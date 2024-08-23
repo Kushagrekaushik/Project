@@ -99,7 +99,6 @@ while True:
                 continue
 
         try:
-            # Split the line into signals and convert them to floats
             signalC3, signalCz, signalC4 = map(float, line.split())
             eeg_data['C3'].append(signalC3)
             eeg_data['Cz'].append(signalCz)
@@ -108,7 +107,7 @@ while True:
             if len(eeg_data['Cz']) >= 250:
                 data_array = [np.array(eeg_data['Cz'])]
                 features = extract_features(data_array)
-                features = np.reshape(features, [1, -1])  # Reshape for model input
+                features = np.reshape(features, [1, -1])  
 
                 prediction = model.predict(features)
                 action = np.argmax(prediction[0])
@@ -118,7 +117,7 @@ while True:
                 else:
                     print('B')  # Backward
 
-                # Trim the data to keep the buffer size constant
+            
                 eeg_data['C3'] = eeg_data['C3'][1:]
                 eeg_data['Cz'] = eeg_data['Cz'][1:]
                 eeg_data['C4'] = eeg_data['C4'][1:]

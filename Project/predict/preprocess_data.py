@@ -123,7 +123,7 @@ while True:
         if len(eeg_data['Cz']) >= 256:
             data_array = [np.array(eeg_data['C3']), np.array(eeg_data['Cz']), np.array(eeg_data['C4'])]
             features = extract_features(data_array)
-            # print(features)
+            print(features)
             
             # Trim the data to keep the buffer size constant
             eeg_data['C3'] = eeg_data['C3'][1:]
